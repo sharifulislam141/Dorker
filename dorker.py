@@ -15,7 +15,7 @@ banner = '''
 \u001b[35m___  ____ ____ _  _ ____ ____    
 |  \ |  | |__/ |_/  |___ |__/   AUTHOR : D4RKW01F 
 |__/ |__| |  \ | \_ |___ |  \   TG     :https://t.me/darkwolf141
-                                FB     :https://www.facebook.com/sharifulislam141/
+                                FB     :https://www.facebook.com/sharifulislam141
                                  
 
 '''
