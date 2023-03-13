@@ -1,11 +1,7 @@
 import time
 import sys
 import os,re,requests
- 
 from multiprocessing.dummy import Pool
-
-
-
 import threading
 import requests
 
@@ -25,7 +21,8 @@ def check_and_save(url):
         thread = threading.Thread(target=check_wordpress, args=(url,))
         thread.start()
     except:
-        print("Error checking site:>", url)
+        print(f"\u001b[31mError checking site!>------{url}")
+        pass
 
 def check_wordpress(url):
     try:
@@ -33,14 +30,14 @@ def check_wordpress(url):
         if "wp-content" in response.text:
             with open("wp.txt", "a") as f:
                 f.write(url + "\n")
-            print(f"\u001b[32mWordPress site found!>     {url}")
+            print(f"\u001b[32mWordPress site found!>-----{url}")
         else:
             with open("other.txt", "a") as f:
                 f.write(url + "\n")
-            print(f"\u001b[35mNon-WordPress site found!> {url}")
+            print(f"\u001b[35mNon-WordPress site found!>-{url}")
     except:
         
-        print(f"\u001b[31mError checking site!>      {url}")
+        print(f"\u001b[31mError checking site!>------{url}")
 
 
 
@@ -289,6 +286,10 @@ def dorkmaker(word):
     for thread in threads:
         thread.join()
 animated(banner)
+try:
+    os.system('git pull')
+except:
+    pass
 animated("\u001b[0mENTER SOME TEXT\n")
 text = input ("D4RKW01F>")
 words = text.split(" ")
