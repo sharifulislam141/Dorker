@@ -4,16 +4,21 @@ import os,re,requests
 from multiprocessing.dummy import Pool
 import threading
 import requests
+import concurrent.futures
 
 
 banner = '''
 
-\u001b[35m___  ____ ____ _  _ ____ ____    
-|  \ |  | |__/ |_/  |___ |__/   AUTHOR : D4RKW01F 
-|__/ |__| |  \ | \_ |___ |  \   TG     :https://t.me/darkwolf141
-                                FB     :https://www.facebook.com/sharifulislam141
-                                 
+\u001b[33m___  ____ ____ _  _ ____ ____    
+|  \ |  | |__/ |_/  |___ |__/    CODED BY N30N
+|__/ |__| |  \ | \_ |___ |  \    TEAM : TEAM BADS
+                                
+'''
+option = '''\u001b[32m
+            CHOOSE YOUR OPTION
 
+            [1]GRAB SITE FROM TEXT
+            [2]GRAB SITE FROM DORKLIST
 '''
 
 def check_and_save(url):
@@ -268,7 +273,11 @@ def dorkmaker(word):
                '("Welcome to WordPress. This is your first post.")',
                '("Just another WordPress site")',
                '("Mr WordPress on Hello world!")',
-               '("/wp/hello-world/")']
+               '("/wp/hello-world/")',
+                '("inurl:/wordpress insite:")',
+                '("/wp/hello-world/) intext:")'
+               ]
+ 
 
     threads = []
 
@@ -290,11 +299,34 @@ try:
     os.system('git pull')
 except:
     pass
-animated("\u001b[0mENTER SOME TEXT\n")
-text = input ("D4RKW01F>")
-words = text.split(" ")
-for word in words:
-    dorkmaker(word)
+animated(option)
+choise = input ("\u001b[33mD4RKW01F>")
+if choise =='1':
+    animated("\u001b[0mENTER SOME TEXT\n")
+    text = input ("D4RKW01F>")
+    words = text.split(" ")
+    for word in words:
+        dorkmaker(word)
+elif choise =='2':
+    animated("\u001b[0mENTER DORKLIST\n")
+    dorks = input ("\u001b[0mD4RKW01F>")
+    file = open(dorks, encoding="utf-8").read().split()
+
+    myfile = set(file)
+    thread = int(input("\033[1;31mThreads: "))
+
+# Create a thread pool with a maximum of 10 threads
+    with concurrent.futures.ThreadPoolExecutor(max_workers=thread) as executor:
+    # Submit each URL to the thread pool
+        futures = [executor.submit(dorkscan, dork) for dork in myfile]
+
+    # Wait for all threads to complete
+        concurrent.futures.wait(futures)
+else:
+    print("Open your eyes ")
+    sys.exit()
+    
+
  
  
  
